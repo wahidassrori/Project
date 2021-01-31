@@ -5,9 +5,17 @@ session_start();
 require "../koneksi/koneksi.php";
 require "../koneksi/fungsi.php";
 
-$username = input($_POST["username"]);
-$password = input($_POST["password"]);
+if (isset($_POST['login'])) {
+    $username = $_POST["username"];
+}
 
+//$password = input($_POST["password"]);
+
+//$resultarray = ['username', 'password'];
+
+//
+
+/*
 $query = $mysqli->query("SELECT * FROM login_admin WHERE username='$username' AND password='$password'");
 
 if ($query->num_rows > 0) {
@@ -27,5 +35,5 @@ else {
     header("location:login-admin.php");
     die();
 }
-
+*/
 ?>
