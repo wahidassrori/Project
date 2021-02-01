@@ -5,10 +5,6 @@ require_once '../koneksi/fungsi.php';
 
 $session = ceksession();
 
-if (isset($_POST['login'])) {
-    login($_POST['username'], $_POST['password']);
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +18,29 @@ if (isset($_POST['login'])) {
 </head>
 <body>
 
+<div class="dashboard">
+
+        <h2>Dashboard</h2>
+
+        <form action="" method="POST">
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="username">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="password">
+            <input type="checkbox" name="remember" value="remember">
+            <label for="remember">Remember me</label><br>
+
+            <?php
+
+            if (isset($_POST['login']) && isset($pesan['error'])) {
+                echo $pesan['error'];
+            }
+            ?>
+
+            <input type="submit" value="Login" name="login">
+        </form>
+    </div>
+<!--
 <div class="container">
 
     <header>
@@ -29,7 +48,7 @@ if (isset($_POST['login'])) {
     </header>
 
     <section>
-        <h2><?php echo "Halo ".$session." :)"; ?></h2>
+        <h2></h2>
         <br>
         <ul>
             <li><a href="produk.php">Produk</a></li>
@@ -48,6 +67,6 @@ if (isset($_POST['login'])) {
     </footer>
 
 </div>
-
+        -->
 </body>
 </html>

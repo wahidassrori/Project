@@ -1,6 +1,6 @@
 <?php
 
-require_once '../koneksi/fungsi.php';
+//require_once '../koneksi/fungsi.php';
 
 //$pesan = ceksession();
 
@@ -25,25 +25,52 @@ require_once '../koneksi/fungsi.php';
 
         <h2>Login Admin</h2>
 
-        <form action="" method="POST">
+        <form method="POST">
             <label for="username">Username</label>
-            <input type="text" name="username" placeholder="username">
+            <input type="text" name="username" id="username" placeholder="username">
             <label for="password">Password</label>
-            <input type="password" name="password" placeholder="password">
+            <input type="password" name="text" id="password" placeholder="password" autocomplete="on">
             <input type="checkbox" name="remember" value="remember">
             <label for="remember">Remember me</label><br>
+            <p class="hasil">Ubah saya...</p>
 
             <?php
 
             if (isset($_POST['login']) && isset($pesan['error'])) {
                 echo $pesan['error'];
             }
-
+            
             ?>
 
-            <input type="submit" value="Login" name="login">
+            <input type="submit" value="Login" name="login" id="login">
         </form>
+        
     </div>
     </div>
+
+    <script>
+    
+            //const username = document.querySelector('#username').value;
+            //const password = document.querySelector('#password').value;
+            //const hasil = document.querySelector('.hasil');
+            
+            let tombol = document.getElementById('form1');
+            let hasil = document.querySelector('#result');
+
+            tombol.addEventListener('submit', function(event) {
+
+                event.preventDefault();
+
+                let nama = document.querySelector('#nama').value;
+                //let hasil = document.querySelector('#result');
+                //let pesan = document.getElementById('p#result');
+                console.log('hai '+nama);
+                result.innerHTML='HAI '+nama;
+            });
+
+            
+
+    </script>
+
 </body>
 </html>

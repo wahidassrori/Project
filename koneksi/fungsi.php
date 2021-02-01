@@ -28,7 +28,6 @@ function ceksession()
 
     if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
         return $_SESSION['username'];
-        header('location:index.php');
     }
     else {
         $pesan = ['error' => 'Username or password wrong!'];
