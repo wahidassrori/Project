@@ -66,8 +66,9 @@
 /* section
 ------------------------------------------------------------------------- */
 .section {
-    width: 300px;
+    width: 288px;
     height: 600px;
+    float: left;
     background-color: #f2f2f2;
 }
 
@@ -87,27 +88,34 @@
 }
 
 
-/* produk
+/* Content
 ------------------------------------------------------------------------- */
-.produk {
-    width: 500px;
-    margin: 100px auto;
-    border: none;
-    border-radius: 5px;
-    background-color: #f2f2f2;
+.content {
+    width: 1000px;
+    float: left;
     padding: 20px;
 }
 
-.produk h2 {
-    text-align: center;
-    padding: 20px 0;
+/* produk
+------------------------------------------------------------------------- */
+.content-produk {
+    width: 940px;
+    border: none;
+    padding: 20px 15px 15px 15px;
+    margin-top: 10px;
+    border-top: 3px solid #2c3e50;
+    background-color: #f2f2f2;
+    overflow: auto;
 }
-
-.produk input[type="submit"] {
-    margin-top: 20px;
+.content-produk form .left {
+    width: 460px;
+    float: left;
 }
-
-
+.content-produk form .right {
+    width: 460px;
+    float: right;
+    margin-left: 10px;
+}
 
 
 

@@ -1,46 +1,52 @@
-<?php
+<?php require "header.php"; ?>
 
-require_once '../koneksi/fungsi.php';
+<div class="content">
 
-$session = ceksession();
+    <h2>Menu Produk</h2>
 
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/full-custom.css">
-    <link rel="stylesheet" href="../style/admin.css">
-    <title>Produk</title>
-</head>
-<body>
-<div class="produk">
-
-    <h2>Input Produk</h2>
-
-    <form action="" method="POST">
-        <label for="nama produk">Nama Produk
-            <input type="text" name="namaproduk" placeholder="Nama Produk">
-        </label>
-        <label for="stok">Stok Produk
-            <input type="number" name="stok" placeholder="Jumlah Produk">
-        </label>
-        <label for="harga">Harga
-            <input type="number" name="harga" placeholder="Harga">
-        </label>
-
-        <?php
-
-        if (isset($_POST['login']) && isset($pesan['error'])) {
-            echo $pesan['error'];
-        }
-        ?>
-
-        <input type="submit" value="Tambah Produk" name="tambah">
-        <a href="data.php">Lihat Data</a>
-    </form>
+    <div class="content-produk">
+        <form action="" method="POST">
+            <div class="left">
+                <label for="kodeproduk" id="label-atas">Kode
+                    <input type="text" name="kodeproduk" placeholder="Kode Produk">
+                </label>
+                <label for="nama produk">Nama Produk
+                    <input type="text" name="namaproduk" placeholder="Nama Produk">
+                </label>
+                <label for="kategoriproduk">Kategori Produk
+                    <select name="kategoriproduk" id="kategoriproduk">
+                        <option value="">Kategori Produk</option>
+                        <option value="kategori 1">Kategori 1</option>
+                        <option value="kategori 2">Kategori 2</option>
+                        <option value="kategori 3">Kategori 3</option>
+                        <option value="tambahkategori">Tambah Kategori</option>
+                    </select>
+                </label>
+                <label for="berat">Berat
+                    <input type="number" name="berat" placeholder="Berat satuan gram">
+                </label>
+            </div>
+            <div class="right">
+                <label for="harga">Harga
+                    <input type="text" name="harga" placeholder="Harga">
+                </label>
+                <label for="supplier">Supplier
+                    <select name="supplier" id="supplier">
+                        <option value="">Supplier</option>
+                        <option value="supplier 1">Supplier 1</option>
+                        <option value="supplier 2">Supplier 2</option>
+                        <option value="supplier 3">Supplier 3</option>
+                        <option value="tambahsupplier">Tambah Supplier</option>
+                    </select>
+                </label>
+                <label for="jumlahproduk">Jumlah
+                    <input type="number" name="jumlah" placeholder="Jumlah Produk">
+                </label>
+                <input type="submit" value="Simpan">
+            </div>
+            
+        </form>
+    </div>
 </div>
-</body>
-</html>
+
+<?php require "footer.php"; ?>
