@@ -15,8 +15,8 @@ if ($session) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/full-custom.css">
-    <link rel="stylesheet" href="../style/admin.css">
+    <link rel="stylesheet" href="full-custom.css">
+    <link rel="stylesheet" href="admin.css">
     <title>ADMIN</title>
 </head>
 <body>
