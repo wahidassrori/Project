@@ -27,13 +27,12 @@ function ceksession()
     session_start();
 
     if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
-        return $_SESSION['username'];
+        return true;
     }
     else {
-        $pesan = ['error' => 'Username or password wrong!'];
-        return $pesan;
-        header('location:login-admin.php');
+        return false;
     }
+
 }
 
 function login($username, $password)

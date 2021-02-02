@@ -2,20 +2,13 @@
 
 session_start();
 
-require "../koneksi/koneksi.php";
 require "../koneksi/fungsi.php";
 
-if (isset($_POST['login'])) {
-    $username = $_POST["username"];
-}
+$mysqli = koneksi();
 
-//$password = input($_POST["password"]);
+$username = input($_POST["username"]);
+$password = input($_POST["password"]);
 
-//$resultarray = ['username', 'password'];
-
-//
-
-/*
 $query = $mysqli->query("SELECT * FROM login_admin WHERE username='$username' AND password='$password'");
 
 if ($query->num_rows > 0) {
@@ -23,17 +16,11 @@ if ($query->num_rows > 0) {
     $_SESSION['username'] = $username;
     $_SESSION['password'] = $password;
 
-    header("location:dashboard-admin.php");
-    die();
+    echo "sukses";
+
 }
 else {
-    $pesan = array('Username atau password salah!');
-    //mengubah array menjadi json
-    $jsonfile = json_encode($pesan);
-    //membuat dan menyimpan file json
-    file_put_contents('pesan.json', $jsonfile);
-    header("location:login-admin.php");
-    die();
+    echo "Username atau password salah!";
 }
-*/
+
 ?>

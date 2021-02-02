@@ -1,12 +1,12 @@
 <?php
 
-//require_once '../koneksi/fungsi.php';
+require_once '../koneksi/fungsi.php';
 
-//$pesan = ceksession();
+$session = ceksession();
 
-//if (isset($_POST['login'])) {
-//    login($_POST['username'], $_POST['password']);
-//}
+if ($session) {
+    header('location:index.php');
+}
 
 ?>
 
@@ -25,47 +25,48 @@
 
         <h2>Login Admin</h2>
 
-        <form method="POST">
+        <form id="form-login">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" placeholder="username">
             <label for="password">Password</label>
-            <input type="password" name="text" id="password" placeholder="password" autocomplete="on">
+            <input type="password" name="password" id="password" placeholder="password">
             <input type="checkbox" name="remember" value="remember">
             <label for="remember">Remember me</label><br>
-            <p class="hasil">Ubah saya...</p>
-
-            <?php
-
-            if (isset($_POST['login']) && isset($pesan['error'])) {
-                echo $pesan['error'];
-            }
-            
-            ?>
-
-            <input type="submit" value="Login" name="login" id="login">
+            <p id="result"></p>
+            <input type="submit" value="Login">
         </form>
-        
     </div>
     </div>
 
     <script>
-    
-            //const username = document.querySelector('#username').value;
-            //const password = document.querySelector('#password').value;
-            //const hasil = document.querySelector('.hasil');
-            
-            let tombol = document.getElementById('form1');
-            let hasil = document.querySelector('#result');
+           
+            let tombol = document.querySelector('#form-login');
+            let result = document.querySelector('#result');
 
             tombol.addEventListener('submit', function(event) {
-
+                
                 event.preventDefault();
 
-                let nama = document.querySelector('#nama').value;
-                //let hasil = document.querySelector('#result');
-                //let pesan = document.getElementById('p#result');
-                console.log('hai '+nama);
-                result.innerHTML='HAI '+nama;
+                let xhr = new XMLHttpRequest();
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        if (xhr.responseText == 'sukses') {
+                            window.location.href = 'index.php';
+                        }
+                        else {
+                            document.querySelector('#result').innerHTML = xhr.responseText;
+                        }
+                    }
+                }
+                
+                let username = document.querySelector('#username').value;
+                let password = document.querySelector('#password').value;
+            
+                xhr.open('POST', 'loginadmin.php', true);
+                xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+                xhr.send('username='+username+'&password='+password);
+
             });
 
             
