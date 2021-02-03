@@ -29,3 +29,26 @@ satuan.addEventListener('click', function(e){
 
 });
 
+/*
+let formtambahproduk = document.querySelector('#form-tambah-produk');
+
+formtambahproduk.addEventListener('submit', function(e) {
+	e.preventDefault();
+
+	let ajax = new XMLHttpRequest();
+
+	ajax.onreadystatechange = function() {
+		if (ajax.readyState == 4 && ajax.status == 200) {
+			document.querySelector('.pesan').innerHTML = ajax.responseText;
+		}
+	};
+
+	let kodeproduk = document.querySelector();
+
+	
+	ajax.open('POST', 'proses-produk.php', true);
+	ajax.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+	ajax.send();
+
+});
+*/

@@ -8,7 +8,7 @@
 
     <div class="menu-produk">
         <ul>
-            <li><a href="#" id="tambah-produk">Tambah Produk</a></li>
+            <li><a href="" id="tambah-produk">Tambah Produk</a></li>
             <li><a href="" id="kategori">Kategori</a></li>
             <li><a href="" id="satuan">Satuan</a></li>
         </ul>
@@ -19,28 +19,34 @@
     <div class="tambah-produk">
         <div class="content-produk">
             <h3>~ Tambah Produk ~</h3>
-            <form action="" method="POST">
+            <form id="#form-tambah-produk">
                 <div class="left">
                     <label for="kodeproduk" id="label-atas">Kode
-                        <input type="text" name="kodeproduk" placeholder="Kode Produk">
+                        <input type="text" name="kodeproduk" id="kodeproduk" placeholder="Kode Produk">
                     </label>
-                    <label for="nama produk">Nama Produk
-                        <input type="text" name="namaproduk" placeholder="Nama Produk">
+                    <label for="produk">Nama Produk
+                        <input type="text" name="produk" id="produk" placeholder="Nama Produk">
                     </label>
                     <label for="kategori">Kategori
                         <select name="kategori" id="kategori">
-                            <option value="">Kategori</option>
-                            <option value="kategori 1">Kategori 1</option>
-                            <option value="kategori 2">Kategori 2</option>
-                            <option value="kategori 3">Kategori 3</option>
+                            <option value="">Pilih Kategori</option>
+                            <?php 
+                                $result = mysqli_query($mysqli, "SELECT * FROM kategori");
+                                while ($rows = mysqli_fetch_assoc($result)) {
+                                    echo '<option value="'.$rows['kodekategori'].'">'.$rows['kategori'].'</option>';
+                                }
+                            ?>
                         </select>
                     </label>
                     <label for="satuan">Satuan
                         <select name="satuan" id="satuan">
                             <option value="">Satuan</option>
-                            <option value="Satuan 1">Satuan 1</option>
-                            <option value="Satuan 2">Satuan 2</option>
-                            <option value="Satuan 3">Satuan</option>
+                            <?php 
+                                $result = mysqli_query($mysqli, "SELECT * FROM satuan");
+                                while ($rows = mysqli_fetch_assoc($result)) {
+                                    echo '<option value="'.$rows['kodesatuan'].'">'.$rows['satuan'].'</option>';
+                                }
+                            ?>
                         </select>
                     </label>
                     <label for="berat">Berat
@@ -57,9 +63,12 @@
                     <label for="supplier">Supplier
                         <select name="supplier" id="supplier">
                             <option value="">Supplier</option>
-                            <option value="supplier 1">Supplier 1</option>
-                            <option value="supplier 2">Supplier 2</option>
-                            <option value="supplier 3">Supplier 3</option>
+                            <?php 
+                                $result = mysqli_query($mysqli, "SELECT * FROM supplier");
+                                while ($rows = mysqli_fetch_assoc($result)) {
+                                    echo '<option value="'.$rows['kodesupplier'].'">'.$rows['supplier'].'</option>';
+                                }
+                            ?>
                         </select>
                     </label>
                     <label for="jumlahproduk">Jumlah
@@ -68,9 +77,12 @@
                     <label for="gudang">Gudang
                         <select name="gudang" id="gudang">
                             <option value="">Gudang</option>
-                            <option value="Gudang 1">Gudang 1</option>
-                            <option value="Gudang 2">Gudang 2</option>
-                            <option value="Gudang 3">Gudang 3</option>
+                            <?php 
+                                $result = mysqli_query($mysqli, "SELECT * FROM gudang");
+                                while ($rows = mysqli_fetch_assoc($result)) {
+                                    echo '<option value="'.$rows['kodegudang'].'">'.$rows['gudang'].'</option>';
+                                }
+                            ?>
                         </select>
                     </label>
                     <input type="submit" value="Simpan">
@@ -79,6 +91,12 @@
             </form>
         </div>
     </div>
+
+    <div class="data-produk">
+        <div class="pesan"></div>
+
+    </div>
+
 </div>
 
 <?php require "footer.php"; ?>
