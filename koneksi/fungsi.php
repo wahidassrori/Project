@@ -2,7 +2,7 @@
 
 function koneksi()
 {
-    $mysqli = mysqli_connect("localhost", "root", "", "rental");
+    $mysqli = mysqli_connect("localhost", "root", "", "project");
 
     if (!$mysqli) {
         echo "Failed to connect to MySql : (" .mysqli_connect_errno(). ") - ".mysqli_connect_error();
@@ -43,7 +43,7 @@ function login($username, $password)
     $username = input($username);
     $password = input($password);
 
-    $result = mysqli_query($mysqli, "SELECT username, password FROM login_admin WHERE username='$username' && password='$password'");
+    $result = mysqli_query($mysqli, "SELECT username, password FROM login WHERE username='$username' && password='$password'");
 
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['username'] = $username;

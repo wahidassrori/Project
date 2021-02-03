@@ -38,11 +38,13 @@ if (!$session) {
 
         <div class="section">
             <div class="menu"><a href="#">Profil</a></div>
+            <div class="menu"><a href="#">User</a></div>
             <div class="menu"><a href="#">Perusahaan</a></div>
             <div class="menu"><a href="#">Gudang</a></div>
             <div class="menu"><a href="produk.php">Produk</a></div>
             <div class="menu"><a href="#">Penjualan</a></div>
             <div class="menu"><a href="#">Pembelian</a></div>
+            <div class="menu"><a href="#">Supplier</a></div>
             <div class="menu"><a href="#">Manufaktur</a></div>
             <div class="menu"><a href="#">Laporan</a></div>
         </div>
