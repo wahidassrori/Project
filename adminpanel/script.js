@@ -29,7 +29,7 @@ satuan.addEventListener('click', function(e){
 
 });
 
-/*
+
 let formtambahproduk = document.querySelector('#form-tambah-produk');
 
 formtambahproduk.addEventListener('submit', function(e) {
@@ -51,4 +51,3 @@ formtambahproduk.addEventListener('submit', function(e) {
 	ajax.send();
 
 });
-*/
