@@ -4,8 +4,6 @@ session_start();
 
 require "../koneksi/fungsi.php";
 
-$mysqli = koneksi();
-
 $username = input($_POST["username"]);
 $password = input($_POST["password"]);
 

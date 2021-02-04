@@ -1,3 +1,4 @@
+
 let tambahproduk = document.querySelector('#tambah-produk');
 let kategori = document.querySelector('#kategori');
 let satuan = document.querySelector('#satuan');
@@ -30,7 +31,7 @@ satuan.addEventListener('click', function(e){
 });
 
 
-let formtambahproduk = document.querySelector('#form-tambah-produk');
+let formtambahproduk = document.querySelector('#form-i-produk');
 
 formtambahproduk.addEventListener('submit', function(e) {
 	e.preventDefault();
@@ -39,15 +40,34 @@ formtambahproduk.addEventListener('submit', function(e) {
 
 	ajax.onreadystatechange = function() {
 		if (ajax.readyState == 4 && ajax.status == 200) {
-			document.querySelector('.pesan').innerHTML = ajax.responseText;
+			if (ajax.responseText == 'sukses') {
+				document.querySelector('.pesan').innerHTML = "Tambah data berhasil...";
+				document.querySelector('#form-i-produk').reset();
+				setTimeout(function() {
+					document.querySelector('.pesan').innerHTML = '';
+				}, 2000);
+			} else {
+				document.querySelector('.pesan').innerHTML = ajax.responseText;
+			}
 		}
 	};
 
-	let kodeproduk = document.querySelector();
-
+	let kodeproduk = document.querySelector('#kodeproduk').value;
+	let produk = document.querySelector('#produk').value;
+	let kategori = document.querySelector('#kategori-produk').value;
+	let satuan = document.querySelector('#satuan-produk').value;
+	let berat = document.querySelector('#berat').value;
+	let harga = document.querySelector('#harga').value;
+	let supplier = document.querySelector('#supplier').value;
+	let qty = document.querySelector('#qty').value;
+	let gudang = document.querySelector('#gudang').value;
 	
+	let data = 'kodeproduk='+kodeproduk+'&produk='+produk+
+				'&kategori='+kategori+'&satuan='+satuan+'&berat='+berat+'&harga='+harga+
+				'&supplier='+supplier+'&qty='+qty+'&gudang='+gudang;
+
 	ajax.open('POST', 'proses-produk.php', true);
 	ajax.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
-	ajax.send();
+	ajax.send(data);
 
 });

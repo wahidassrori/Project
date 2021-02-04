@@ -13,6 +13,8 @@ function koneksi()
 
 }
 
+$mysqli = koneksi();
+
 function input($data)
 {
     $data = trim($data);

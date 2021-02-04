@@ -1,12 +1,12 @@
 <?php require "header.php"; ?>
 
-<div class="content-menu-produk">
+<div class="content">
 
     <h2>Menu Produk</h2>
 
     <div class="line"></div>
 
-    <div class="menu-produk">
+    <div class="menu-content">
         <ul>
             <li><a href="" id="tambah-produk">Tambah Produk</a></li>
             <li><a href="" id="kategori">Kategori</a></li>
@@ -18,17 +18,21 @@
     <div class="satuan">ini satuan</div>
     <div class="tambah-produk">
         <div class="content-produk">
+
             <h3>~ Tambah Produk ~</h3>
-            <form id="#form-tambah-produk">
+            
+            <div class="pesan"></div>
+            
+            <form id="form-i-produk">
                 <div class="left">
                     <label for="kodeproduk" id="label-atas">Kode
-                        <input type="text" name="kodeproduk" id="kodeproduk" placeholder="Kode Produk">
+                        <input type="text" name="kodeproduk" id="kodeproduk" placeholder="Kode Produk" required>
                     </label>
                     <label for="produk">Nama Produk
-                        <input type="text" name="produk" id="produk" placeholder="Nama Produk">
+                        <input type="text" name="produk" id="produk" placeholder="Nama Produk" required>
                     </label>
                     <label for="kategori">Kategori
-                        <select name="kategori" id="kategori">
+                        <select name="kategori" id="kategori-produk" required>
                             <option value="">Pilih Kategori</option>
                             <?php 
                                 $result = mysqli_query($mysqli, "SELECT * FROM kategori");
@@ -39,7 +43,7 @@
                         </select>
                     </label>
                     <label for="satuan">Satuan
-                        <select name="satuan" id="satuan">
+                        <select name="satuan" id="satuan-produk">
                             <option value="">Satuan</option>
                             <?php 
                                 $result = mysqli_query($mysqli, "SELECT * FROM satuan");
@@ -50,15 +54,12 @@
                         </select>
                     </label>
                     <label for="berat">Berat
-                        <input type="number" name="berat" placeholder="Berat satuan gram">
+                        <input type="number" name="berat" id="berat" placeholder="Berat satuan gram">
                     </label>
                 </div>
                 <div class="right">
-                    <label for="hargabeli">Harga Beli
-                        <input type="text" name="hargabeli" placeholder="Harga Beli">
-                    </label>
-                    <label for="hargajual">Harga Jual
-                        <input type="text" name="hargajual" placeholder="Harga Jual">
+                    <label for="harga">Harga
+                        <input type="text" name="harga" id="harga" placeholder="Harga">
                     </label>
                     <label for="supplier">Supplier
                         <select name="supplier" id="supplier">
@@ -71,8 +72,8 @@
                             ?>
                         </select>
                     </label>
-                    <label for="jumlahproduk">Jumlah
-                        <input type="number" name="jumlah" placeholder="Jumlah Produk">
+                    <label for="qty">Qty
+                        <input type="number" name="qty" id="qty" placeholder="Qty">
                     </label>
                     <label for="gudang">Gudang
                         <select name="gudang" id="gudang">
@@ -90,11 +91,6 @@
                 
             </form>
         </div>
-    </div>
-
-    <div class="data-produk">
-        <div class="pesan"></div>
-
     </div>
 
 </div>
