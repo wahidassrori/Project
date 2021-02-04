@@ -1,5 +1,8 @@
 <?php
 
+var_dump($_POST);
+
+/*
 require "../koneksi/fungsi.php";
 
 $kodeproduk = strtoupper(input($_POST['kodeproduk']));
@@ -15,11 +18,13 @@ $gudang     = input($_POST['gudang']);
 $result = mysqli_query($mysqli, "INSERT INTO produk (kodeproduk, produk, kodekategori, kodesatuan, berat, harga, kodesupplier, qty, kodegudang) VALUES ('$kodeproduk', '$produk', '$kategori', '$satuan', '$berat', '$harga', '$supplier', '$qty', '$gudang')");
 
 if ($result) {
-	echo 'sukses';
+	$pesan = ['sukses' => 'Data berhasil ditambahkan'];
 } else {
-	echo mysqli_error($mysqli);
+	$error = mysqli_error($mysqli);
+	$pesan = ['error' => $error];
 }
 
+echo json_encode($pesan);
 
-
+*/
 ?>

@@ -40,6 +40,9 @@ formtambahproduk.addEventListener('submit', function(e) {
 
 	ajax.onreadystatechange = function() {
 		if (ajax.readyState == 4 && ajax.status == 200) {
+			//let result = JSON.parse(ajax.responseText);
+			alert(ajax.responseText);
+			/*
 			if (ajax.responseText == 'sukses') {
 				document.querySelector('.pesan').innerHTML = "Tambah data berhasil...";
 				document.querySelector('#form-i-produk').reset();
@@ -48,10 +51,10 @@ formtambahproduk.addEventListener('submit', function(e) {
 				}, 2000);
 			} else {
 				document.querySelector('.pesan').innerHTML = ajax.responseText;
-			}
+			}*/
 		}
 	};
-
+	/*
 	let kodeproduk = document.querySelector('#kodeproduk').value;
 	let produk = document.querySelector('#produk').value;
 	let kategori = document.querySelector('#kategori-produk').value;
@@ -66,8 +69,12 @@ formtambahproduk.addEventListener('submit', function(e) {
 				'&kategori='+kategori+'&satuan='+satuan+'&berat='+berat+'&harga='+harga+
 				'&supplier='+supplier+'&qty='+qty+'&gudang='+gudang;
 
+	*/
+	let formtp = document.querySelector('#form-i-produk');
+	let form = new FormData(formtp);
+
 	ajax.open('POST', 'proses-produk.php', true);
-	ajax.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
-	ajax.send(data);
+	//ajax.setRequestHeader('Content-Type', "multipart/form-data");
+	ajax.send(form);
 
 });
