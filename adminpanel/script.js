@@ -19,6 +19,16 @@ kategori.addEventListener('click', function(e){
 	document.querySelector('.kategori').style.display = 'block';
 	document.querySelector('.satuan').style.display = 'none';
 
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			alert(xhr.responseText);
+		}	
+	}
+	let formdata = 'tampildata=1';
+	xhr.open('POST', 'proses-produk.php', true);
+	xhr.send(formdata);
+
 });
 
 satuan.addEventListener('click', function(e){
@@ -104,3 +114,9 @@ formkategoriproduk.addEventListener('submit', function(event) {
 	xhr.open('POST', 'proses-produk.php', true);
 	xhr.send(formdata);
 });
+
+/*--------------- Tampil Data ------------------- */
+
+//window.addEventListener('load', function() {
+
+//});

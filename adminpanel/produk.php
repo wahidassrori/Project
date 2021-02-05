@@ -36,10 +36,14 @@
                 <th>Opsi</th>
             </tr>
 
-            <tr>
+            <div class="hasil"></div>
                 <?php 
                 
+                /*
                 $result = mysqli_query($mysqli, "SELECT * FROM kategori");
+                
+                var_dump(mysqli_fetch_assoc($result));
+                
                 $no = 0;
                 while ($rows = mysqli_fetch_assoc($result)) {
                     $no++;
@@ -51,6 +55,7 @@
                     echo '<td>update/delete</td>';
                     echo '</tr>';
                 }
+                */
 
                 ?>
 

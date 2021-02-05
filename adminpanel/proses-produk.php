@@ -3,9 +3,38 @@
 require "../koneksi/fungsi.php";
 
 //----------------------------- TAMBAH PRODUK --------------------------
+if (isset($_POST['tampildata'])) {
+	$result = mysqli_query($mysqli, "SELECT * FROM kategori");
+	while ($rows = mysqli_fetch_assoc($result)) {
+		$arrayData[] = $rows;
+	}
+	var_dump($arrayData);
+	/*
+	$result = mysqli_query($mysqli, "SELECT * FROM kategori");
+	$no = 0;
+	while ($rows = mysqli_fetch_assoc($result)) {
+		$no++;
+		echo '<td>'.$no.'</td>';
+		echo '<td>'.$rows['kodekategori'].'</td>';
+		echo '<td>'.$rows['kategori'].'</td>';
+		echo '<td>'.$rows['tanggal'].'</td>';
+		echo '<td>'.$rows['statuskategori'].'</td>';
+		echo '<td>update/delete</td>';
+		echo '</tr>';
+	}
+	*/
+}
 
 if (isset($_POST['aksi']) && $_POST['aksi'] == 'tambahproduk') {
 	
+	$result = mysqli_query($mysqli, "SELECT * FROM kategori");
+	while ($rows = mysqli_fetch_assoc($result)) {
+		$arrayData[] = $rows;
+	}
+	var_dump($arrayData);
+	//echo json_encode($arrayData);
+
+	/*
 	$kodeproduk = strtoupper(input($_POST['kodeproduk']));
 	$produk     = ucfirst(input($_POST['produk']));
 	$kategori   = input($_POST['kategori']);
@@ -26,6 +55,7 @@ if (isset($_POST['aksi']) && $_POST['aksi'] == 'tambahproduk') {
 	}
 
 	echo json_encode($pesan);
+	*/
 }
 
 //----------------------------- TAMBAH KATEGORI --------------------------
