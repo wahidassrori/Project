@@ -69,12 +69,38 @@ formtambahproduk.addEventListener('submit', function(e) {
 				'&kategori='+kategori+'&satuan='+satuan+'&berat='+berat+'&harga='+harga+
 				'&supplier='+supplier+'&qty='+qty+'&gudang='+gudang;
 
-	*/
-	let formtp = document.querySelector('#form-i-produk');
-	let form = new FormData(formtp);
+				*/
+				let formtp = document.querySelector('#form-i-produk');
+				let form = new FormData(formtp);
 
-	ajax.open('POST', 'proses-produk.php', true);
+				form.append('aksi', 'tambahproduk');
+
+				ajax.open('POST', 'proses-produk.php', true);
 	//ajax.setRequestHeader('Content-Type', "multipart/form-data");
 	ajax.send(form);
 
+});
+
+let kapital = document.querySelector('#kapital');
+
+kapital.addEventListener('keyup', function() {
+	let x = document.getElementById("kapital");
+	x.value = x.value.toUpperCase();
+});
+
+let formkategoriproduk = document.querySelector('#form-kategori-produk');
+formkategoriproduk.addEventListener('submit', function(event) {
+	event.preventDefault();
+
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			alert(xhr.responseText);
+		}	
+	}
+	let formkategoriproduk = document.querySelector('#form-kategori-produk');
+	let formdata = new FormData(formkategoriproduk);
+	formdata.append('aksi', 'tambahkategori');
+	xhr.open('POST', 'proses-produk.php', true);
+	xhr.send(formdata);
 });

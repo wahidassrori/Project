@@ -8,8 +8,6 @@ if (!$session) {
     header('location:login-admin.php');
 }
 
-$mysqli = koneksi();
-
 ?>
 
 <!DOCTYPE html>
