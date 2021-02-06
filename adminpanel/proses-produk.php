@@ -5,15 +5,10 @@ require "../koneksi/fungsi.php";
 //----------------------------- TAMBAH PRODUK --------------------------
 if (isset($_POST['tampildata'])) {
 	$result = mysqli_query($mysqli, "SELECT * FROM kategori");
-	while ($rows = mysqli_fetch_assoc($result)) {
-		$arrayData[] = $rows;
-	}
-	var_dump($arrayData);
-	/*
-	$result = mysqli_query($mysqli, "SELECT * FROM kategori");
 	$no = 0;
 	while ($rows = mysqli_fetch_assoc($result)) {
 		$no++;
+		echo "<tr>";
 		echo '<td>'.$no.'</td>';
 		echo '<td>'.$rows['kodekategori'].'</td>';
 		echo '<td>'.$rows['kategori'].'</td>';
@@ -22,7 +17,7 @@ if (isset($_POST['tampildata'])) {
 		echo '<td>update/delete</td>';
 		echo '</tr>';
 	}
-	*/
+	
 }
 
 if (isset($_POST['aksi']) && $_POST['aksi'] == 'tambahproduk') {

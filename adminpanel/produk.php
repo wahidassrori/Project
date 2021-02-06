@@ -35,10 +35,12 @@
                 <th>Status</th>
                 <th>Opsi</th>
             </tr>
-
-            <div class="hasil"></div>
-                <?php 
+            <tbody class="hasil">
                 
+            </tbody>
+                
+<?php 
+
                 /*
                 $result = mysqli_query($mysqli, "SELECT * FROM kategori");
                 
@@ -74,7 +76,7 @@
 
                 <div class="pesan"></div>
 
-                <form id="form-i-produk">
+                <form id="form-produk">
                     <div class="left">
                         <label for="kodeproduk" id="label-atas">Kode
                             <input type="text" name="kodeproduk" id="kodeproduk" placeholder="Kode Produk" required>

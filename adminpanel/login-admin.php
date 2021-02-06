@@ -1,13 +1,13 @@
 <?php
 
 require_once '../koneksi/fungsi.php';
-
+/*
 $session = ceksession();
 
 if ($session) {
     header('location:index.php');
 }
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ if ($session) {
             <label for="username">Username</label>
             <input type="text" name="username" id="username" placeholder="username">
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="password">
+            <input type="password" name="password" id="password" placeholder="password" autocomplete="off">
             <input type="checkbox" name="remember" value="remember">
             <label for="remember">Remember me</label><br>
             <p id="result"></p>
