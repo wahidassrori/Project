@@ -1,5 +1,5 @@
 <?php
-
+/*
 require_once '../koneksi/fungsi.php';
 
 $session = ceksession();
@@ -7,7 +7,7 @@ $session = ceksession();
 if (!$session) {
     header('location:login-admin.php');
 }
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ if (!$session) {
                     <img src="img/profil.png" alt="image-profile">
                 </div>
                 <div class="right">
-                    <a href="#">Hai <?php echo $_SESSION['username']; ?></a>
+                    <a href="#">Hai <?php //echo $_SESSION['username']; ?></a>
                 </div>
             </div>
         </div>

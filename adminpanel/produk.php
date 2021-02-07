@@ -35,38 +35,37 @@
                 <th>Status</th>
                 <th>Opsi</th>
             </tr>
-            <tbody class="hasil">
-                
+            <tbody class="hasil">        
             </tbody>
-                
-<?php 
-
-                /*
-                $result = mysqli_query($mysqli, "SELECT * FROM kategori");
-                
-                var_dump(mysqli_fetch_assoc($result));
-                
-                $no = 0;
-                while ($rows = mysqli_fetch_assoc($result)) {
-                    $no++;
-                    echo '<td>'.$no.'</td>';
-                    echo '<td>'.$rows['kodekategori'].'</td>';
-                    echo '<td>'.$rows['kategori'].'</td>';
-                    echo '<td>'.$rows['tanggal'].'</td>';
-                    echo '<td>'.$rows['statuskategori'].'</td>';
-                    echo '<td>update/delete</td>';
-                    echo '</tr>';
-                }
-                */
-
-                ?>
-
-            </table>
+        </table>
 
         </div>
 
 
-        <div class="satuan">ini satuan</div>
+        <div class="satuan">
+            <form id="form-satuan-produk">
+                <label>Kode Satuan
+                    <input type="text" name="kodesatuan" id="kapital" placeholder="Kode Satuan" required>
+                </label>
+                <label>Satuan
+                    <input type="text" name="satuan" placeholder="Satuan" required>
+                </label>
+                <input type="submit" value="Tambah Satuan">
+            </form>
+
+            <table>
+                <tr>
+                    <th>No</th>
+                    <th>Kode Kategori</th>
+                    <th>Kategori</th>
+                    <th>Tanggal</th>
+                    <th>Status</th>
+                    <th>Opsi</th>
+                </tr>
+                <tbody class="hasil">        
+                </tbody>
+            </table>
+        </div>
 
 
         <div class="tambah-produk">
