@@ -1,8 +1,6 @@
 <?php
 
-session_start();
 require_once '../koneksi/fungsi.php';
-
 
 $usergrup = $_SESSION['usergrup'];
 $query = mysqli_query($mysqli, "SELECT akses FROM usergrup WHERE usergrup='$usergrup'");

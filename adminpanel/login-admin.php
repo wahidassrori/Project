@@ -1,13 +1,5 @@
 <?php
-
-require_once '../koneksi/fungsi.php';
-
-$session = ceksession();
-
-if ($session) {
-    header('location:index.php');
-}
-
+require '../koneksi/fungsi.php';
 ?>
 
 <!DOCTYPE html>
@@ -37,42 +29,6 @@ if ($session) {
         </form>
     </div>
     </div>
-
-    <script>
-           
-            let tombol = document.querySelector('#form-login');
-            let result = document.querySelector('#result');
-
-            tombol.addEventListener('submit', function(event) {
-                
-                event.preventDefault();
-
-                let xhr = new XMLHttpRequest();
-
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        if (xhr.responseText == 'sukses') {
-                            window.location.href = 'index.php';
-                        }
-                        else {
-                            document.querySelector('#result').innerHTML = xhr.responseText;
-                            document.querySelector('#form-login').reset();
-                        }
-                    }
-                }
-                
-                let username = document.querySelector('#username').value;
-                let password = document.querySelector('#password').value;
-            
-                xhr.open('POST', 'loginadmin.php', true);
-                xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
-                xhr.send('username='+username+'&password='+password);
-
-            });
-
-            
-
-    </script>
-
+<script src="script.js"></script>
 </body>
 </html>

@@ -2,14 +2,8 @@
 
 require_once '../koneksi/fungsi.php';
 
-$session = ceksession();
-
-if (!$session) {
-    header('location:login-admin.php');
-}
-
-if (!cekusergrup()) {
-    die('akses ditolak!!');
+if (!userValidation()) {
+    exit('akses ditolak!!');
 }
 
 ?>

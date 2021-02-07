@@ -1,21 +1,28 @@
 <?php
+session_start();
+$mysqli = koneksi();
+
+if (isset($_POST['index'])) {
+    $usergrup = $_SESSION['usergrup'];
+    $query = mysqli_query($mysqli, "SELECT akses FROM usergrup WHERE usergrup='$usergrup'");
+    $rows = mysqli_fetch_assoc($query);
+
+    $akses = explode('-', $rows['akses']);
+
+    echo json_encode($akses);
+}
 
 function koneksi()
 {
     $mysqli = mysqli_connect("localhost", "root", "", "project");
-
     if (!$mysqli) {
         echo "Failed to connect to MySql : (" .mysqli_connect_errno(). ") - ".mysqli_connect_error();
         die();
     }
-
     return $mysqli;
-
 }
 
-$mysqli = koneksi();
-
-function input($data)
+function inputValidation($data)
 {
     $data = trim($data);
     $data = stripslashes($data);
@@ -23,15 +30,12 @@ function input($data)
     return $data;
 }
 
-function ceksession()
+function loginValidation()
 {
 
-    session_start();
-
     if (isset($_SESSION['username']) && isset($_SESSION['usergrup']) && !empty($_SESSION['username']) && !empty($_SESSION['usergrup'])) {
+
         $usergrup = $_SESSION['usergrup'];
-        //$query = mysqli_query("SELECT akses FROM usergrup WHERE usergrup='$usergrup'");
-        //$pecah = explode('-', $)
         return true;
         
     }
@@ -41,33 +45,41 @@ function ceksession()
 
 }
 
-function cekusergrup() {
+function userValidation() {
 
-    $mysqli = koneksi();
+    if (isset($_SESSION['username']) && isset($_SESSION['usergrup']) && !empty($_SESSION['username']) && !empty($_SESSION['usergrup']))
+    {
 
-    $usergrup = $_SESSION['usergrup'];
-    $query = mysqli_query($mysqli, "SELECT akses FROM usergrup WHERE usergrup='$usergrup'");
-    $rows = mysqli_fetch_assoc($query);
+        $mysqli = koneksi();
 
-    $akses = explode('-', $rows['akses']);
-    array_push($akses, 'index');
+        $usergrup = $_SESSION['usergrup'];
+        $query = mysqli_query($mysqli, "SELECT akses FROM usergrup WHERE usergrup='$usergrup'");
+        $rows = mysqli_fetch_assoc($query);
 
-    $count = count($akses);
+        $akses = explode('-', $rows['akses']);
+        array_push($akses, 'index');
 
-    $arrayurl = explode('/',$_SERVER["REQUEST_URI"]);
-    $url = end($arrayurl);
+        $count = count($akses);
 
-    foreach ($akses as $value) {
-        $array[] = $value.'.php';
+        $arrayurl = explode('/',$_SERVER["REQUEST_URI"]);
+        $url = end($arrayurl);
+
+        foreach ($akses as $value) {
+            $array[] = $value.'.php';
+        }
+
+        if (in_array($url, $array)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
     }
-
-    if (in_array($url, $array)) {
-        return true;
+    else{
+        header("location:login-admin.php");
+        exit();
     }
-    else {
-        return false;
-    }
-
 }
 
 function login($username, $password)

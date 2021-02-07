@@ -1,23 +1,53 @@
-window.addEventListener('load', function(){
+let containerIndex = document.querySelector('.container-index');
+if (containerIndex) {
+	window.addEventListener('load', function(){
+		userValidation('POST', '../koneksi/fungsi.php', 'index=1');
+	});
+}
 
-	ajax('POST', 'test.php');
-
-});
-
-function ajax(method, url, send=null) {
+function userValidation(method, url, send=null) {
 	let xhr = new XMLHttpRequest();
-	
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
+			console.log(xhr.responseText);
+			
 			let listmenu = JSON.parse(xhr.responseText);
+			
 			listmenu.forEach(function(item) {
 				document.querySelector('#menu-'+item).style.display = 'block';
 			});
-			//document.querySelector('.content').innerHTML = xhr.responseText;
+			
 		}
 	}
 	xhr.open(method, url, true);
 	xhr.send(send);
+}
+
+let formLogin = document.querySelector('#form-login');
+
+if (formLogin)
+{
+	formLogin.addEventListener('submit', function(event) {
+		event.preventDefault();
+		
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				if (xhr.responseText == 'sukses') {
+					window.location.href = 'index.php';
+				}
+				else {
+					document.querySelector('#result').innerHTML = xhr.responseText;
+					document.querySelector('#form-login').reset();
+				}
+			}
+		}
+		let Login = document.querySelector('#form-login');
+		let form = new FormData(Login);
+		xhr.open('POST', 'loginadmin.php', true);
+		xhr.send(form);
+
+	});
 }
 
 let tambahproduk = document.querySelector('#tambah-produk');
