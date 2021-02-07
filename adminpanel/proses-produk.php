@@ -4,12 +4,13 @@ require "../koneksi/fungsi.php";
 
 //----------------------------- TAMBAH PRODUK --------------------------
 if (isset($_POST['tampildata'])) {
-	$result = mysqli_query($mysqli, "SELECT * FROM kategori");
-	$no = 0;
+	$result = mysqli_query($mysqli, "SELECT * FROM kategori order by nomor DESC");
+	$count  = mysqli_num_rows($result);
+	$count = $count + 1;
 	while ($rows = mysqli_fetch_assoc($result)) {
-		$no++;
+		$count--;
 		echo "<tr>";
-		echo '<td>'.$no.'</td>';
+		echo '<td>'.$count.'</td>';
 		echo '<td>'.$rows['kodekategori'].'</td>';
 		echo '<td>'.$rows['kategori'].'</td>';
 		echo '<td>'.$rows['tanggal'].'</td>';
@@ -60,7 +61,7 @@ if (isset($_POST['aksi']) && $_POST['aksi'] == 'tambahkategori') {
 	$kodekategori = input($_POST['kodekategori']);
 	$kategori = input($_POST['kategori']);
 	
-	$result = mysqli_query($mysqli, "INSERT INTO kategori VALUES ('$kodekategori', '$kategori', NOW(), 'Active')");
+	$result = mysqli_query($mysqli, "INSERT INTO kategori (kodekategori, kategori, tanggal, statuskategori) VALUES ('$kodekategori', '$kategori', NOW(), 'Active')");
 
 	if ($result) {
 		$arrayPesan = ['sukses' => 'Data berhasil ditambahkan'];

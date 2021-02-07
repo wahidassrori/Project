@@ -1,13 +1,13 @@
 <?php
 
 require_once '../koneksi/fungsi.php';
-/*
+
 $session = ceksession();
 
 if ($session) {
     header('location:index.php');
 }
-*/
+
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +56,7 @@ if ($session) {
                         }
                         else {
                             document.querySelector('#result').innerHTML = xhr.responseText;
+                            document.querySelector('#form-login').reset();
                         }
                     }
                 }

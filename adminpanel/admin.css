@@ -86,7 +86,33 @@
     background-color: #2c3e50;
 }
 
-
+#menu-profil {
+    display: none;
+}
+#menu-user {
+    display: none;
+}
+#menu-perusahaan {
+    display: none;
+}
+#menu-gudang {
+    display: none;
+}
+#menu-produk {
+    display: none;
+}
+#menu-penjualan {
+    display: none;
+}
+#menu-pembelian {
+    display: none;
+}
+#menu-supplier {
+    display: none;
+}
+#menu-manufaktur, #menu-laporan {
+    display: none;
+}
 /* content-menu-produk
 ------------------------------------------------------------------------- */
 .content {
@@ -157,7 +183,7 @@
 -------------------------------------------------------------------------*/ 
 .tambah-produk {
     overflow: auto;
-    display: none;
+    display: block;
 }
 .content-produk {
     width: 730px;
@@ -220,7 +246,7 @@
     margin-top: 10px;
     background-color: #f2f2f2;
     overflow: auto;
-    display: block;
+    display: none;
 }
 
 .satuan form {

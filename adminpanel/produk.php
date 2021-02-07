@@ -28,14 +28,14 @@
 
         <table>
             <tr>
-                <th>No</th>
-                <th>Kode Kategori</th>
+                <th>No^</th>
+                <th>Kode</th>
                 <th>Kategori</th>
                 <th>Tanggal</th>
                 <th>Status</th>
                 <th>Opsi</th>
             </tr>
-            <tbody class="hasil">        
+            <tbody class="datakategori">       
             </tbody>
         </table>
 
@@ -70,8 +70,6 @@
 
         <div class="tambah-produk">
             <div class="content-produk">
-
-                <h3>~ Tambah Produk ~</h3>
 
                 <div class="pesan"></div>
 

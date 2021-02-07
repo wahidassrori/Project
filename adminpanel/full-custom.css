@@ -9,6 +9,11 @@ body {
     margin: 0 auto;
 }
 
+table {
+    font-size: small;
+    text-align: center;
+}
+
 a {
     text-decoration: none;
 }
