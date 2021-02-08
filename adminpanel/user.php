@@ -18,7 +18,7 @@
 				<input type="text" name="username">
 			</label>
 			<label>Password
-				<input type="password" name="password">
+				<input type="password" name="password" autocomplete="off">
 			</label>
 			<label>Usergrup
 				<select name="usergrup">

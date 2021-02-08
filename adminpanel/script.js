@@ -2,7 +2,6 @@ let containerIndex = document.querySelector('.container-index');
 if (containerIndex) {
 	window.addEventListener('load', function(){
 		userValidation('POST', 'proses-login.php', 'index=1');
-		tampilDataUser();
 	});
 }
 
@@ -21,17 +20,21 @@ function userValidation(method, url, send=null) {
 	xhr.send(send);
 }
 
-function tampilDataUser() {
-	let xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			document.querySelector('.datauser').innerHTML = xhr.responseText;
+
+const dataUser = document.querySelector('.datauser');
+if (dataUser) {
+	function tampilDataUser() {
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				document.querySelector('.datauser').innerHTML = xhr.responseText;
+			}
 		}
+		let kirim = 'tampildatauser=1';
+		xhr.open('POST', 'proses.php', true);
+		xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+		xhr.send(kirim);
 	}
-	let kirim = 'tampildatauser=1';
-	xhr.open('POST', 'proses.php', true);
-	xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
-	xhr.send(kirim);
 }
 
 const buttonTambahUser = document.querySelector('.tambah-user');
@@ -52,8 +55,6 @@ if (formLogin)
 		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
-				console.log(xhr.responseText);
-				/*
 				if (xhr.responseText == 'sukses') {
 					window.location.href = 'index.php';
 				}
@@ -61,7 +62,6 @@ if (formLogin)
 					document.querySelector('#result').innerHTML = xhr.responseText;
 					document.querySelector('#form-login').reset();
 				}
-				*/
 			}
 		}
 		let Login = document.querySelector('#form-login');

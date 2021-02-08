@@ -6,21 +6,22 @@ if (isset($_POST['proses']) && $_POST['proses'] == 'login')
 	$username = inputValidation($_POST["username"]);
 	$password = inputValidation($_POST["password"]);
 
-	$query = mysqli_query($mysqli, "SELECT user.username, user.password, usergrup.usergrup FROM login INNER JOIN usergrup ON user.idusergrup=usergrup.idusergrup WHERE username='$username' AND password='$password'");
-	echo mysqli_num_rows($query);
-	/*
-	if (mysqli_num_rows($query) > 0)
-	{
+
+	$querylogin = mysqli_query($mysqli, "SELECT username, password, idusergrup FROM user WHERE username='$username' AND password='$password'");
+
+	if (mysqli_num_rows($querylogin) > 0)
+	{	
+		$loginrows = mysqli_fetch_assoc($querylogin);
+		$query = mysqli_query($mysqli, "SELECT usergrup FROM usergrup WHERE idusergrup='{$loginrows['idusergrup']}'");
 		$rows = mysqli_fetch_assoc($query);
 		$_SESSION['username'] = $username;
 		$_SESSION['usergrup'] = $rows['usergrup'];
-		echo $rows['usergrup'];
+		echo "sukses";
 	}
 	else
 	{
 		echo "Username atau password salah!";
 	}
-	*/
 }
 
 /*
