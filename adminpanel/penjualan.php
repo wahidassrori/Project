@@ -2,7 +2,7 @@
 
 <div class="content">
 
-    <h2>Menu Produk</h2>
+    <h2>Menu Penjualan</h2>
 
     <div class="line"></div>
 

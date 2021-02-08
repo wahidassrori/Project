@@ -1,7 +1,8 @@
 let containerIndex = document.querySelector('.container-index');
 if (containerIndex) {
 	window.addEventListener('load', function(){
-		userValidation('POST', '../koneksi/fungsi.php', 'index=1');
+		userValidation('POST', 'proses-login.php', 'index=1');
+		tampilDataUser();
 	});
 }
 
@@ -9,10 +10,7 @@ function userValidation(method, url, send=null) {
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			console.log(xhr.responseText);
-			
 			let listmenu = JSON.parse(xhr.responseText);
-			
 			listmenu.forEach(function(item) {
 				document.querySelector('#menu-'+item).style.display = 'block';
 			});
@@ -23,7 +21,28 @@ function userValidation(method, url, send=null) {
 	xhr.send(send);
 }
 
-let formLogin = document.querySelector('#form-login');
+function tampilDataUser() {
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			document.querySelector('.datauser').innerHTML = xhr.responseText;
+		}
+	}
+	let kirim = 'tampildatauser=1';
+	xhr.open('POST', 'proses.php', true);
+	xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+	xhr.send(kirim);
+}
+
+const buttonTambahUser = document.querySelector('.tambah-user');
+if (buttonTambahUser) {
+	buttonTambahUser.addEventListener('click', function () {
+		document.querySelector('#form-tambah-user').style.display = 'block';
+	});
+}
+
+
+const formLogin = document.querySelector('#form-login');
 
 if (formLogin)
 {
@@ -33,6 +52,8 @@ if (formLogin)
 		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
+				console.log(xhr.responseText);
+				/*
 				if (xhr.responseText == 'sukses') {
 					window.location.href = 'index.php';
 				}
@@ -40,11 +61,13 @@ if (formLogin)
 					document.querySelector('#result').innerHTML = xhr.responseText;
 					document.querySelector('#form-login').reset();
 				}
+				*/
 			}
 		}
 		let Login = document.querySelector('#form-login');
 		let form = new FormData(Login);
-		xhr.open('POST', 'loginadmin.php', true);
+		form.append('proses', 'login');
+		xhr.open('POST', 'proses.php', true);
 		xhr.send(form);
 
 	});

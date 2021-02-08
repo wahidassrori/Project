@@ -61,6 +61,25 @@
     color: azure;
 }
 
+/* halaman-user
+------------------------------------------------------------------------- */
+.halaman-user {
+    width: 730px;
+    border: none;
+    padding: 15px 15px 15px 15px;
+    margin-top: 10px;
+    background-color: #f2f2f2;
+    overflow: auto;
+}
+
+.tambah-user {
+    margin-bottom: 15px;
+}
+
+#form-tambah-user {
+    display: none;
+}
+
 
 /* section
 ------------------------------------------------------------------------- */

@@ -2,16 +2,6 @@
 session_start();
 $mysqli = koneksi();
 
-if (isset($_POST['index'])) {
-    $usergrup = $_SESSION['usergrup'];
-    $query = mysqli_query($mysqli, "SELECT akses FROM usergrup WHERE usergrup='$usergrup'");
-    $rows = mysqli_fetch_assoc($query);
-
-    $akses = explode('-', $rows['akses']);
-
-    echo json_encode($akses);
-}
-
 function koneksi()
 {
     $mysqli = mysqli_connect("localhost", "root", "", "project");
@@ -34,10 +24,8 @@ function loginValidation()
 {
 
     if (isset($_SESSION['username']) && isset($_SESSION['usergrup']) && !empty($_SESSION['username']) && !empty($_SESSION['usergrup'])) {
-
         $usergrup = $_SESSION['usergrup'];
-        return true;
-        
+        return true;      
     }
     else {
         return false;
