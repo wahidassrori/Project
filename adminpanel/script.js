@@ -1,7 +1,51 @@
-let containerIndex = document.querySelector('.container-index');
+const containerIndex = document.querySelector('.container-index');
+
 if (containerIndex) {
 	window.addEventListener('load', function(){
 		userValidation('POST', 'proses-login.php', 'index=1');
+		tampilDataUser();
+	});
+}
+
+const dataUser = document.querySelector('.datauser');
+const buttonTambahUser = document.querySelector('.tambah-user');
+const formLogin = document.querySelector('#form-login');
+let tambahproduk = document.querySelector('#tambah-produk');
+let kategori = document.querySelector('#kategori');
+let satuan = document.querySelector('#satuan');
+let formproduk = document.querySelector('#form-produk');
+let kapital = document.querySelector('#kapital');
+let formkategoriproduk = document.querySelector('#form-kategori-produk');
+const formtambahuser = document.querySelector('#form-tambah-user');
+
+if (formtambahuser)
+{
+	formtambahuser.addEventListener('submit', function(event) {
+		event.preventDefault();
+		
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				if (xhr.responseText == 'sukses')
+				{
+					let pesan = document.querySelector('.pesan-tambah-user');
+					pesan.innerHTML = 'Data berhasil ditambahkan';
+					pesan.style.color = 'green';
+				}
+				else
+				{
+					let pesan = document.querySelector('.pesan-tambah-user');
+					pesan.innerHTML = xhr.responseText;
+					pesan.style.color = 'red';
+				}
+			}
+		}
+		let formdata = document.querySelector('#form-tambah-user');
+		let form = new FormData(formdata);
+		form.append('proses', 'tambahuser');
+		xhr.open('POST', 'proses.php', true);
+		xhr.send(form);
+
 	});
 }
 
@@ -20,8 +64,6 @@ function userValidation(method, url, send=null) {
 	xhr.send(send);
 }
 
-
-const dataUser = document.querySelector('.datauser');
 if (dataUser) {
 	function tampilDataUser() {
 		let xhr = new XMLHttpRequest();
@@ -30,22 +72,18 @@ if (dataUser) {
 				document.querySelector('.datauser').innerHTML = xhr.responseText;
 			}
 		}
-		let kirim = 'tampildatauser=1';
+		let kirim = 'data=user';
 		xhr.open('POST', 'proses.php', true);
 		xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
 		xhr.send(kirim);
 	}
 }
 
-const buttonTambahUser = document.querySelector('.tambah-user');
 if (buttonTambahUser) {
 	buttonTambahUser.addEventListener('click', function () {
 		document.querySelector('#form-tambah-user').style.display = 'block';
 	});
 }
-
-
-const formLogin = document.querySelector('#form-login');
 
 if (formLogin)
 {
@@ -72,10 +110,6 @@ if (formLogin)
 
 	});
 }
-
-let tambahproduk = document.querySelector('#tambah-produk');
-let kategori = document.querySelector('#kategori');
-let satuan = document.querySelector('#satuan');
 
 if (tambahproduk) {
 	tambahproduk.addEventListener('click', function(e){
@@ -112,9 +146,6 @@ if (satuan) {
 	});	
 }
 
-//-------------- TAMBAH PRODUK -----------------------
-let formproduk = document.querySelector('#form-produk');
-
 if (formproduk) {
 	formproduk.addEventListener('submit', function(e) {
 		e.preventDefault();
@@ -135,8 +166,6 @@ if (formproduk) {
 	});	
 }
 
-//-------------- KAPITAL -----------------------
-let kapital = document.querySelector('#kapital');
 if (kapital) {
 	kapital.addEventListener('keyup', function() {
 		let x = document.getElementById("kapital");
@@ -144,8 +173,6 @@ if (kapital) {
 	});	
 }
 
-//-------------- FORM KATEGORI PRODUK -----------------------
-let formkategoriproduk = document.querySelector('#form-kategori-produk');
 if (formkategoriproduk) {
 	formkategoriproduk.addEventListener('submit', function(event) {
 		event.preventDefault();
@@ -166,7 +193,6 @@ if (formkategoriproduk) {
 	});	
 }
 
-/*--------------- Tampil Data ------------------- */
 function tampildatakategori() {
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {

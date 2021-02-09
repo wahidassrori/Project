@@ -24,6 +24,26 @@ if (isset($_POST['proses']) && $_POST['proses'] == 'login')
 	}
 }
 
+if (isset($_POST['proses']) && $_POST['proses'] == 'tambahuser')
+{
+	$username = inputValidation($_POST["username"]);
+	$password = password_hash(inputValidation($_POST["password"]), PASSWORD_DEFAULT);
+	$idusergrup = inputValidation($_POST["idusergrup"]);
+
+
+	$query = mysqli_query($mysqli, "INSERT INTO user (username, password, idusergrup) VALUES ('$username', '$password', $idusergrup)");
+
+	if ($query)
+	{	
+		echo "sukses";
+	}
+	else
+	{
+		echo mysqli_error($mysqli);
+	}
+
+}
+
 /*
 if () {
 	$usergrup = $_SESSION['usergrup'];
@@ -36,8 +56,8 @@ if () {
 }
 */
 
-if (isset($_POST['tampildatauser'])) {
-	$query = mysqli_query($mysqli, "SELECT * FROM login order by idlogin DESC");
+if (isset($_POST['data']) && $_POST['data']=='user') {
+	$query = mysqli_query($mysqli, "SELECT user.idusergrup, user.username, user.password, usergrup.usergrup FROM user INNER JOIN usergrup ON user.idusergrup=usergrup.idusergrup order by iduser DESC");
 	$count  = mysqli_num_rows($query);
 	$nomor = $count + 1;
 	while ($rows = mysqli_fetch_assoc($query)) {
@@ -47,9 +67,18 @@ if (isset($_POST['tampildatauser'])) {
 		echo '<td>'.$rows['username'].'</td>';
 		echo '<td>'.$rows['password'].'</td>';
 		echo '<td><select name="usergrup">';
-		echo '<option value="'.$rows['usergrup'].'">'.$rows['usergrup'].'</option>';
+		$queryusergrup = mysqli_query($mysqli, "SELECT idusergrup, usergrup FROM usergrup");
+		while ($kolom = mysqli_fetch_assoc($queryusergrup)) {
+			if ($rows['idusergrup'] == $kolom['idusergrup']) {
+				$option = "selected";
+			}
+			else {
+				$option = "";
+			}
+			echo '<option value="'.$kolom['idusergrup'].'" '.$option.'>'.$kolom['usergrup'].'</option>';
+		}
 		echo "</select></td>";
-		echo '<td>update/delete</td>';
+		echo '<td><button id="user-edit" value="'.$rows['idusergrup'].'">Edit</button> - <button id="user-delete" value="'.$rows['idusergrup'].'">delete</button></td>';
 		echo '</tr>';
 	}
 }
