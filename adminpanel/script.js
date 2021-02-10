@@ -2,7 +2,7 @@ const containerIndex = document.querySelector('.container-index');
 
 if (containerIndex) {
 	window.addEventListener('load', function(){
-		userValidation('POST', 'proses-login.php', 'index=1');
+			userValidation('POST', 'proses-login.php', 'index=1');
 		tampilDataUser();
 	});
 }
@@ -17,6 +17,27 @@ let formproduk = document.querySelector('#form-produk');
 let kapital = document.querySelector('#kapital');
 let formkategoriproduk = document.querySelector('#form-kategori-produk');
 const formtambahuser = document.querySelector('#form-tambah-user');
+const useredit = document.querySelector('#user-edit');
+
+if (useredit) {
+	useredit.addEventListener('click', function()
+	{
+		console.log('oke');
+		/*
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if (xhr.readyState == 4 && xhr.status == 200)
+			{
+				console.log(xhr.responseText);
+			};	
+		}
+		const iduser = document.querySelesctor('#user-edit').value;
+		const send = "proses=dataupdateuser&id="+iduser;
+		xhr.open('POST', 'proses.php', true);
+		xhr.send(send);
+		*/
+	});
+}
 
 if (formtambahuser)
 {
@@ -35,7 +56,7 @@ if (formtambahuser)
 				else
 				{
 					let pesan = document.querySelector('.pesan-tambah-user');
-					pesan.innerHTML = xhr.responseText;
+					pesan.innerHTML = "Tambah data error!";
 					pesan.style.color = 'red';
 				}
 			}
@@ -72,7 +93,7 @@ if (dataUser) {
 				document.querySelector('.datauser').innerHTML = xhr.responseText;
 			}
 		}
-		let kirim = 'data=user';
+		let kirim = 'proses=datauser';
 		xhr.open('POST', 'proses.php', true);
 		xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
 		xhr.send(kirim);

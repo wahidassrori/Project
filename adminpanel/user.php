@@ -23,7 +23,7 @@
 					<th>Usergrup</th>
 					<th>Opsi</th>
 				</tr>
-				<tbody class="datauser">       
+				<tbody class="datauser">
 				</tbody>
 			</table>
 		</div>
@@ -43,7 +43,33 @@
 
 						$query = mysqli_query($mysqli, "SELECT idusergrup, usergrup FROM usergrup");
 						while ($rows = mysqli_fetch_assoc($query)) {
-							echo '<option value="'.$rows['idusergrup'].'">'.$rows['usergrup'].'</option>';	
+							echo '<option value="' . $rows['idusergrup'] . '">' . $rows['usergrup'] . '</option>';
+						}
+
+						?>
+					</select>
+				</label>
+				<input type="submit" value="Tambah User">
+				
+			</form>
+		</div>
+		<div class="edit-user">
+			<form id="form-edit-user">
+				<div class="pesan pesan-tambah-user"></div>
+				<label>Username
+					<input type="text" name="username" required>
+				</label>
+				<label>Password
+					<input type="text" name="password" required>
+				</label>
+				<label>Usergrup
+					<select name="idusergrup" required>
+						<option value="">Pilih Usergrup</option>
+						<?php
+
+						$query = mysqli_query($mysqli, "SELECT idusergrup, usergrup FROM usergrup");
+						while ($rows = mysqli_fetch_assoc($query)) {
+							echo '<option value="' . $rows['idusergrup'] . '">' . $rows['usergrup'] . '</option>';
 						}
 
 						?>
@@ -55,6 +81,9 @@
 		<div class="tambah-usergrup">
 			tambah usergrup
 		</div>
+		<div class="edit-usergrup">
+			tambah usergrup
+		</div>
 		<div class="akses">
 			akses
 		</div>
@@ -62,7 +91,6 @@
 </div>
 
 <script type="text/javascript">
-	
 	const datauser = document.querySelector('#data-user');
 	const tambahuser = document.querySelector('#tambah-user');
 	const tambahusergrup = document.querySelector('#tambah-usergrup');
@@ -99,7 +127,6 @@
 		document.querySelector('.tambah-usergrup').style.display = 'none';
 		document.querySelector('.akses').style.display = 'block';
 	})
-
 </script>
 
 <?php require "footer.php" ?>
