@@ -67,9 +67,7 @@ if (isset($_POST['proses']) && $_POST['proses'] == 'datauser') {
 	$query = mysqli_query($mysqli, "SELECT user.idusergrup, user.username, user.password, usergrup.usergrup FROM user INNER JOIN usergrup ON user.idusergrup=usergrup.idusergrup order by iduser DESC");
 	$count  = mysqli_num_rows($query);
 	while ($rows = mysqli_fetch_assoc($query)) {
-		$data['username'][] = $rows['username'];
-		$data['password'][] = $rows['password'];
-		$data['usergrup'][] = $rows['usergrup'];
+		$data[] = $rows;
 	}
 
 	echo json_encode($data);

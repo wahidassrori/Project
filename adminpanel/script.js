@@ -21,12 +21,14 @@ if (halamanUser) {
 		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
-				let json = JSON.parse(xhr.responseText);
-				json.username.forEach(function(value) {
-					document.querySelector('.datauser').innerHTML = value;	
-				});
-				//document.querySelector('.datauser').innerHTML = json.username;
-				//console.log('oke');
+				let arrayData = JSON.parse(xhr.responseText);
+				let data = "";
+				for (let index = 1; index < arrayData.length; index++) {
+					data += "<br>"
+					+index; 
+				}
+				
+				document.querySelector('.datauser').innerHTML = data;
 			}
 		}
 		const kirim = 'proses=datauser';

@@ -1,3 +1,4 @@
+<?php require_once '../koneksi/fungsi.php'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -8,20 +9,16 @@
 <body>
 	<button id="button" value="2020">Klik</button>
 	<?php
-	$array = ['satu' => 'satu', 'dua' => 'dua', 'tiga' => 'tiga'];
-	$array2 = []
-	var_dump($array);
-	echo "<br>";
-	var_dump($array2);
+	$query = mysqli_query($mysqli, "SELECT user.idusergrup, user.username, user.password, usergrup.usergrup FROM user INNER JOIN usergrup ON user.idusergrup=usergrup.idusergrup order by iduser DESC");
+	$count  = mysqli_num_rows($query);
+	while ($rows = mysqli_fetch_assoc($query)) {
+		var_dump($rows);
+		echo "<br>";
+	}
+	//echo json_encode($data);
+	//$rows = mysqli_fetch_assoc($query);
+	//var_dump($rows['username']);
 	?>
-	<script type="text/javascript">
-		const button = document.querySelector('#button');
-		button.addEventListener('click', function() {
-			const button = document.querySelector('#button').value;
-			//const nilai = button.getAttribute('value');
-			console.log(button);
-		})
-	</script>
 </body>
 
 </html>

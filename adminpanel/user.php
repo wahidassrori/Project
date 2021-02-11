@@ -24,8 +24,6 @@
 					<th>Opsi</th>
 				</tr>
 				<tbody class="datauser">
-					<div class="user-edit"></div>
-					<div class="user-edit"></div>
 				</tbody>
 			</table>
 		</div>
