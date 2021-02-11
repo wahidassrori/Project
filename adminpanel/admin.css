@@ -51,6 +51,7 @@
     float: left;
     margin-right: 10px;
 }
+
 .header .right {
     float: right;
 }
@@ -76,6 +77,7 @@
     margin: 0;
     padding: 0;
 }
+
 /*
 .halaman-user input[type=text],
 .halaman-user input[type=password],
@@ -86,10 +88,20 @@
 */
 .tambah-user {
     margin-bottom: 15px;
+    display: none;
 }
 
-.halaman-user .tambah-user,
+.edit-user {
+    display: none;
+}
+
+.tambah-usergrup {
+    display: none;
+}
+
+.halaman-user.tambah-user,
 .halaman-user .tambah-usergrup,
+.halaman-user .edit-usergrup,
 .halaman-user .akses {
     display: none;
 }
@@ -105,47 +117,57 @@
 }
 
 .menu a {
-    color:  #2c3e50;
+    color: #2c3e50;
     display: block;
     padding: 10px 10px 10px 30px;
-    border-bottom: 1px solid  #dfdddd;
+    border-bottom: 1px solid #dfdddd;
 }
 
 .menu a:hover {
     color: #dfdddd;
     display: block;
     padding: 10px 10px 10px 30px;
-    border-bottom: 1px solid  #dfdddd;
+    border-bottom: 1px solid #dfdddd;
     background-color: #2c3e50;
 }
 
 #menu-profil {
     display: none;
 }
+
 #menu-user {
     display: none;
 }
+
 #menu-perusahaan {
     display: none;
 }
+
 #menu-gudang {
     display: none;
 }
+
 #menu-produk {
     display: none;
 }
+
 #menu-penjualan {
     display: none;
 }
+
 #menu-pembelian {
     display: none;
 }
+
 #menu-supplier {
     display: none;
 }
-#menu-manufaktur, #menu-laporan {
+
+#menu-manufaktur,
+#menu-laporan {
     display: none;
 }
+
 /* content-menu-produk
 ------------------------------------------------------------------------- */
 .content {
@@ -166,15 +188,18 @@
 .menu-content ul {
     background-color: #f2f2f2;
 }
-.menu-content li{
+
+.menu-content li {
     display: inline-block;
 }
+
 .menu-content li {
     display: inline-block;
     padding: 10px 20px;
     border-right: 1px solid #e0e0e0;
     cursor: default;
 }
+
 .menu-content li:hover {
     cursor: default;
     display: inline-block;
@@ -189,9 +214,11 @@
 .tambah-produk {
     overflow: auto;
 }
+
 .satuan {
     display: none;
 }
+
 .content-produk {
     width: 730px;
     border: none;
@@ -200,14 +227,17 @@
     background-color: #f2f2f2;
     overflow: auto;
 }
+
 .content-produk h3 {
     color: #2c3e50;
     margin-bottom: 20px;
 }
+
 .content-produk form .left {
     width: 355px;
     float: left;
 }
+
 .content-produk form .right {
     width: 355px;
     float: right;
@@ -215,11 +245,12 @@
 }
 
 /*adminpanel
--------------------------------------------------------------------------*/ 
+-------------------------------------------------------------------------*/
 .tambah-produk {
     overflow: auto;
     display: block;
 }
+
 .content-produk {
     width: 730px;
     border: none;
@@ -228,14 +259,17 @@
     background-color: #f2f2f2;
     overflow: auto;
 }
+
 .content-produk h3 {
     color: #2c3e50;
     margin-bottom: 20px;
 }
+
 .content-produk form .left {
     width: 355px;
     float: left;
 }
+
 .content-produk form .right {
     width: 355px;
     float: right;
@@ -263,10 +297,13 @@
     width: 100%;
     background-color: #fff;
 }
-.kategori th, td {
+
+.kategori th,
+td {
     border: 1px solid #ddd;
     padding: 7px 3px;
 }
+
 .kategori th {
     color: #fff;
     background-color: #2c3e50;
@@ -293,10 +330,13 @@
     width: 100%;
     background-color: #fff;
 }
-.satuan th, td {
+
+.satuan th,
+td {
     border: 1px solid #ddd;
     padding: 7px 3px;
 }
+
 .satuan th {
     color: #fff;
     background-color: #2c3e50;

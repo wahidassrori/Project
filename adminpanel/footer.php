@@ -1,10 +1,9 @@
+<div class="footer">
 
-    <div class="footer">
-    
-    </div>
+</div>
 
-    </div>
-    <script src="script.js"></script>
+</div>
+<script src="script.js"></script>
 </body>
 
 </html>

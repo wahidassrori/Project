@@ -63,8 +63,18 @@ if () {
 */
 
 if (isset($_POST['proses']) && $_POST['proses'] == 'datauser') {
+
 	$query = mysqli_query($mysqli, "SELECT user.idusergrup, user.username, user.password, usergrup.usergrup FROM user INNER JOIN usergrup ON user.idusergrup=usergrup.idusergrup order by iduser DESC");
 	$count  = mysqli_num_rows($query);
+	while ($rows = mysqli_fetch_assoc($query)) {
+		$data['username'][] = $rows['username'];
+		$data['password'][] = $rows['password'];
+		$data['usergrup'][] = $rows['usergrup'];
+	}
+
+	echo json_encode($data);
+
+	/*
 	$nomor = $count + 1;
 	while ($rows = mysqli_fetch_assoc($query)) {
 		$nomor--;
@@ -83,7 +93,8 @@ if (isset($_POST['proses']) && $_POST['proses'] == 'datauser') {
 			echo '<option value="' . $kolom['idusergrup'] . '" ' . $option . '>' . $kolom['usergrup'] . '</option>';
 		}
 		echo "</select></td>";
-		echo '<td><button id="user-edit" value="' . $rows['idusergrup'] . '">Edit</button> - <button id="user-delete" value="' . $rows['idusergrup'] . '">delete</button></td>';
+		echo '<td><button class="user-edit" value="' . $rows['idusergrup'] . '">Edit</button> - <button class="user-delete" value="' . $rows['idusergrup'] . '">delete</button></td>';
 		echo '</tr>';
 	}
+	*/
 }

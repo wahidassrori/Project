@@ -2,20 +2,52 @@ const containerIndex = document.querySelector('.container-index');
 
 if (containerIndex) {
 	window.addEventListener('load', function(){
-			userValidation('POST', 'proses-login.php', 'index=1');
-		tampilDataUser();
+		userValidation('POST', 'proses-login.php', 'index=1');
 	});
 }
 
-const dataUser = document.querySelector('.datauser');
+const halamanUser = document.querySelector('.halaman-user');
+
+if (halamanUser) {
+	tampilDataUser();
+	//let buttonEdit = document.querySelectorAll('.user-edit');
+	//for (let i = 0; i < buttonEdit.length; i++) {
+	//	console.log('oke');
+	//}
+}
+//const dataUser = document.querySelector('.datauser');
+//if (dataUser) {
+	function tampilDataUser() {
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				let json = JSON.parse(xhr.responseText);
+				json.username.forEach(function(value) {
+					document.querySelector('.datauser').innerHTML = value;	
+				});
+				//document.querySelector('.datauser').innerHTML = json.username;
+				//console.log('oke');
+			}
+		}
+		const kirim = 'proses=datauser';
+		//const kirim = {
+	//		proses : 'datauser'
+	//	};
+		xhr.open('POST', 'proses.php', true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//x-www-form-urlencoded
+		xhr.send(kirim);
+	}
+//}
+
+
 const buttonTambahUser = document.querySelector('.tambah-user');
 const formLogin = document.querySelector('#form-login');
-let tambahproduk = document.querySelector('#tambah-produk');
-let kategori = document.querySelector('#kategori');
-let satuan = document.querySelector('#satuan');
-let formproduk = document.querySelector('#form-produk');
-let kapital = document.querySelector('#kapital');
-let formkategoriproduk = document.querySelector('#form-kategori-produk');
+const tambahproduk = document.querySelector('#tambah-produk');
+const kategori = document.querySelector('#kategori');
+const satuan = document.querySelector('#satuan');
+const formproduk = document.querySelector('#form-produk');
+const kapital = document.querySelector('#kapital');
+const formkategoriproduk = document.querySelector('#form-kategori-produk');
 const formtambahuser = document.querySelector('#form-tambah-user');
 const useredit = document.querySelector('#user-edit');
 
@@ -84,28 +116,13 @@ function userValidation(method, url, send=null) {
 	xhr.open(method, url, true);
 	xhr.send(send);
 }
-
-if (dataUser) {
-	function tampilDataUser() {
-		let xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				document.querySelector('.datauser').innerHTML = xhr.responseText;
-			}
-		}
-		let kirim = 'proses=datauser';
-		xhr.open('POST', 'proses.php', true);
-		xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
-		xhr.send(kirim);
-	}
-}
-
+/*
 if (buttonTambahUser) {
 	buttonTambahUser.addEventListener('click', function () {
 		document.querySelector('#form-tambah-user').style.display = 'block';
 	});
 }
-
+*/
 if (formLogin)
 {
 	formLogin.addEventListener('submit', function(event) {
@@ -214,16 +231,18 @@ if (formkategoriproduk) {
 	});	
 }
 
-function tampildatakategori() {
-	let xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			document.querySelector('.datakategori').innerHTML = xhr.responseText;
+const datakategori = document.querySelector('.datakategori');
+if (datakategori) {
+	function tampildatakategori() {
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				const datakategori = document.querySelector('.datakategori');
+				datakategori.innerHTML = xhr.responseText;
+			}
 		}
-	}
-	let kirim = 'tampildata=1';
-	xhr.open('POST', 'proses-produk.php', true);
-	xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
-	xhr.send(kirim);
+		let kirim = 'tampildata=1';
+		xhr.open('POST', 'proses-produk.php', true);
+		xhr.send(kirim);
+	}	
 }
-

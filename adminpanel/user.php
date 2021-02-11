@@ -24,6 +24,8 @@
 					<th>Opsi</th>
 				</tr>
 				<tbody class="datauser">
+					<div class="user-edit"></div>
+					<div class="user-edit"></div>
 				</tbody>
 			</table>
 		</div>
@@ -50,7 +52,7 @@
 					</select>
 				</label>
 				<input type="submit" value="Tambah User">
-				
+
 			</form>
 		</div>
 		<div class="edit-user">

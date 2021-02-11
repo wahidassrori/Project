@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>TEST</title>
 </head>
+
 <body>
 	<button id="button" value="2020">Klik</button>
 	<?php
-
-	$x = 0;
-	$y = 0;
-	while ($x < 10) {
-		$x = $x+1;
-		while ($y < $x) {
-			$y++;
-			echo $y;
-			echo $x;
-		}
-	}
-
+	$array = ['satu' => 'satu', 'dua' => 'dua', 'tiga' => 'tiga'];
+	$array2 = []
+	var_dump($array);
+	echo "<br>";
+	var_dump($array2);
 	?>
 	<script type="text/javascript">
 		const button = document.querySelector('#button');
@@ -28,4 +23,5 @@
 		})
 	</script>
 </body>
+
 </html>
