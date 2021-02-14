@@ -12,7 +12,7 @@ const HALAMAN_USER = document.querySelector('.halaman-user');
 if (HALAMAN_USER) {
 	
 	makeAJAXCall('proses=data_user', "POST", "proses.php", (response) => {
-		document.querySelector('.datauser').innerHTML = response;
+		document.querySelector('.datauser').innerHTML = response;	
 		let buttonEdit = document.querySelectorAll('.user-edit');
 		for (let index = 0; index < buttonEdit.length; index++) {
 			let buttonEdit = document.querySelectorAll('.user-edit');
@@ -22,36 +22,51 @@ if (HALAMAN_USER) {
 					document.querySelector('.data-user').style.display = 'none';
 					document.querySelector('.edit-user').style.display = 'block';
 					const result = JSON.parse(response);
-					//alert(result.datauser.username);
-					if (condition) {
-						
-					}
-					const data = `<form id="form-edit-user">
+					console.log(result);			
+					let data = `<form id="form-edit-user">
 						<div class="pesan pesan-tambah-user"></div>
 						<label>Username
-							<input type="text" name="username" value="${result.datauser.username}" required>
+							<input type="text" name="username" value="${result.username}" required>
+							<input id="iduser" type="hidden" name="iduser" value="${result.iduser}" required>
 						</label>
 						<label>Password
-							<input type="text" name="password" value="${result.datauser.password}" required>
+							<input type="text" name="password" value="${result.password}" required>
 						</label>
 						<label>Usergrup
 							<select name="idusergrup" required>
-								<option value="">Pilih Usergrup</option>			
-							</select>
+								<option value="">Pilih Usergrup</option>`;
+								let select;
+								for (let index = 0; index < result.usergrup.length; index++) {
+									if (result.idusergrup == result.usergrup[index].idusergrup) {
+										select = 'selected';
+									}
+									else {
+										select = '';
+									}
+									data += '<option value='+result.usergrup[index].idusergrup+' '+select+' required>'+result.usergrup[index].usergrup+'</option>';
+								}
+
+							data +=`</select>
 						</label>
 						<input type="submit" value="Tambah User">
 					</form>`;
 					document.querySelector('.edit-user').innerHTML = data;
+					submitFormEdit(response => {
+						console.log(response);
+						makeAJAXCall('proses=data_user', "POST", "proses.php", (response) => {
+							document.querySelector('.datauser').innerHTML = response;
+						});
+					});
 				});
 			});
 		}
+		
 	});
 
 	function makeAJAXCall(sendData, methodType, url, callback) {
 		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
-				//document.querySelector('.datauser').innerHTML = xhr.response;
 				callback(xhr.response);
 			}
 		}
@@ -59,15 +74,27 @@ if (HALAMAN_USER) {
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhr.send(sendData);
 	}
-	
-	
 
-	/*
-	buttonUserDelete.addEventListener('click', function() {
-		const UserDelete = document.querySelectorAll('.user-delete').getAttribute('value');
-		console.log(UserDelete);
-	});
-	*/
+	function submitFormEdit(callback) {
+		const SubmitFormEditUser = document.querySelector('#form-edit-user');
+		SubmitFormEditUser.addEventListener('submit', (e) => {
+			e.preventDefault();
+			let formData = document.querySelector('#form-edit-user');
+			let xhr = new XMLHttpRequest();
+			let form = new FormData(formData);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					callback(xhr.response);
+				}
+			}
+			const iduser = document.querySelector('#iduser').value;
+			form.append('proses', 'simpan_edit_user');
+			form.append('iduser', iduser);
+			xhr.open('POST', 'proses.php');
+			xhr.send(form);
+		});
+	}
+
 	const formTambahUser = document.querySelector('#form-tambah-user');
 	formTambahUser.addEventListener('submit', function(event) {
 		event.preventDefault();

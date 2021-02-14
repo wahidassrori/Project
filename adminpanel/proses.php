@@ -1,6 +1,20 @@
 <?php
 require "../koneksi/fungsi.php";
 
+if (isset($_POST['proses']) && $_POST['proses'] === 'simpan_edit_user') {
+	$iduser = inputValidation($_POST["iduser"]);
+	$username = inputValidation($_POST["username"]);
+	$password = inputValidation($_POST["password"]);
+	$idusergrup = inputValidation($_POST["idusergrup"]);
+	$query = mysqli_query($mysqli, "UPDATE user SET username='$username', password='$password', idusergrup='$idusergrup' WHERE iduser='$iduser'");
+	if ($query) {
+		echo "sukses";
+	} else {
+		echo mysqli_error($mysqli);
+	}
+	//var_dump($_POST);
+}
+
 if (isset($_POST['proses']) && $_POST['proses'] == 'login') {
 	$username = inputValidation($_POST["username"]);
 	$password = inputValidation($_POST["password"]);
@@ -36,7 +50,7 @@ if (isset($_POST['proses']) && $_POST['proses'] == 'tambahuser') {
 }
 
 if (isset($_POST['proses']) && $_POST['proses'] == 'datauser') {
-	$query = mysqli_query($mysqli, "SELECT user.idusergrup, user.username, user.password, usergrup.usergrup FROM user INNER JOIN usergrup ON user.idusergrup=usergrup.idusergrup order by iduser DESC");
+	$query = mysqli_query($mysqli, "SELECT user.iduser, user.idusergrup, user.username, user.password, usergrup.usergrup FROM user INNER JOIN usergrup ON user.idusergrup=usergrup.idusergrup order by iduser DESC");
 	$count  = mysqli_num_rows($query);
 	$nomor = $count + 1;
 	while ($rows = mysqli_fetch_assoc($query)) {
@@ -56,13 +70,13 @@ if (isset($_POST['proses']) && $_POST['proses'] == 'datauser') {
 			echo '<option value="' . $kolom['idusergrup'] . '" ' . $option . '>' . $kolom['usergrup'] . '</option>';
 		}
 		echo "</select></td>";
-		echo '<td><button class="button-default user-edit" value="' . $rows['idusergrup'] . '">Edit</button> <button class="button-default user-delete" value="' . $rows['idusergrup'] . '">delete</button></td>';
+		echo '<td><button class="button-default user-edit" value="' . $rows['iduser'] . '">Edit</button> <button class="button-default user-delete" value="' . $rows['iduser'] . '">delete</button></td>';
 		echo '</tr>';
 	}
 }
 
 if (isset($_POST['proses']) && $_POST['proses'] == 'data_user') {
-	$query = mysqli_query($mysqli, "SELECT user.iduser, user.username, user.password, usergrup.usergrup FROM user INNER JOIN usergrup ON user.idusergrup=usergrup.idusergrup order by iduser DESC");
+	$query = mysqli_query($mysqli, "SELECT user.iduser, user.username, user.password, usergrup.usergrup, user.idusergrup FROM user INNER JOIN usergrup ON user.idusergrup=usergrup.idusergrup order by iduser DESC");
 	$count  = mysqli_num_rows($query);
 	$nomor = $count + 1;
 	while ($rows = mysqli_fetch_assoc($query)) {
@@ -79,7 +93,7 @@ if (isset($_POST['proses']) && $_POST['proses'] == 'data_user') {
 			} else {
 				$option = "";
 			}
-			echo '<option value="' . $kolom['iduser'] . '" ' . $option . '>' . $kolom['usergrup'] . '</option>';
+			echo '<option value="' . $kolom['idusergrup'] . '"' . $option . '>' . $kolom['usergrup'] . '</option>';
 		}
 		echo "</select></td>";
 		echo '<td><button class="button-default user-edit" value="' . $rows['iduser'] . '">Edit</button> <button class="button-default user-delete" value="' . $rows['iduser'] . '">delete</button></td>';
@@ -89,17 +103,14 @@ if (isset($_POST['proses']) && $_POST['proses'] == 'data_user') {
 
 if (isset($_POST['proses']) && $_POST['proses'] == 'edit_user') {
 	$iduser = $_POST['iduser'];
-	$query_data_user = mysqli_query($mysqli, "SELECT username, password, idusergrup FROM user WHERE iduser=$iduser");
-	while ($rows = mysqli_fetch_assoc($query_data_user)) {
-		$array_data_user['datauser'] = $rows;
-	}
+	$query_data_user = mysqli_query($mysqli, "SELECT * FROM user WHERE iduser=$iduser");
+	$rows = mysqli_fetch_assoc($query_data_user);
 	$query_data_usergrup = mysqli_query($mysqli, "SELECT idusergrup, usergrup FROM usergrup");
-	while ($rows = mysqli_fetch_assoc($query_data_usergrup)) {
-		$array_data_usergrup['datausergrup'] = $rows;
+	while ($kolom = mysqli_fetch_assoc($query_data_usergrup)) {
+		$rows['usergrup'][] = $kolom;
 	}
-	$result = array_merge($array_data_user, $array_data_usergrup);
-	//var_dump($result);
-	echo json_encode($result);
+	//var_dump($rows);
+	echo json_encode($rows);
 }
 
 if (isset($_POST['proses']) && $_POST['proses'] == 'dataedituser') {
