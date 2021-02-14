@@ -14,8 +14,10 @@ table {
   width: 100%;
   background-color: #fff;
   font-size: small;
+  font-weight: bold;
   text-align: center;
 }
+
 th {
   border: 1px solid #ddd;
   padding: 7px 3px;
@@ -33,9 +35,9 @@ input[type="number"],
 select {
   width: 100%;
   padding: 6px 6px;
-      margin: 8px 0;
+  margin: 8px 0;
   display: inline-block;
-    border: 1px solid #ccc;
+  border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
   font-size: medium;
@@ -59,7 +61,8 @@ input[type="submit"]:hover {
 
 /*------------------------BUTTON-----------------------*/
 .button {
-  background-color: #4caf50; /* Green */
+  background-color: #4caf50;
+  /* Green */
   border: none;
   color: white;
   padding: 10px 10px;
@@ -71,10 +74,8 @@ input[type="submit"]:hover {
   cursor: pointer;
 }
 
-.button1 {
-  background-color: white;
-  color: black;
-  border: 1px solid #4caf50;
+.button-default {
+  padding: 0;
 }
 
 .button1:hover {

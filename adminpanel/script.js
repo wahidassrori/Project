@@ -5,42 +5,103 @@ if (containerIndex) {
 		userValidation('POST', 'proses-login.php', 'index=1');
 	});
 }
+// HALAMAN USER
+/* ----------------------------------------------------------------*/
 
-const halamanUser = document.querySelector('.halaman-user');
+const HALAMAN_USER = document.querySelector('.halaman-user');
+if (HALAMAN_USER) {
+	
+	makeAJAXCall('proses=data_user', "POST", "proses.php", (response) => {
+		document.querySelector('.datauser').innerHTML = response;
+		let buttonEdit = document.querySelectorAll('.user-edit');
+		for (let index = 0; index < buttonEdit.length; index++) {
+			let buttonEdit = document.querySelectorAll('.user-edit');
+			buttonEdit[index].addEventListener('click', () => {
+				const id = buttonEdit[index].getAttribute('value');
+				makeAJAXCall("proses=edit_user&iduser="+id, 'POST', 'proses.php', (response) => {
+					document.querySelector('.data-user').style.display = 'none';
+					document.querySelector('.edit-user').style.display = 'block';
+					const result = JSON.parse(response);
+					//alert(result.datauser.username);
+					if (condition) {
+						
+					}
+					const data = `<form id="form-edit-user">
+						<div class="pesan pesan-tambah-user"></div>
+						<label>Username
+							<input type="text" name="username" value="${result.datauser.username}" required>
+						</label>
+						<label>Password
+							<input type="text" name="password" value="${result.datauser.password}" required>
+						</label>
+						<label>Usergrup
+							<select name="idusergrup" required>
+								<option value="">Pilih Usergrup</option>			
+							</select>
+						</label>
+						<input type="submit" value="Tambah User">
+					</form>`;
+					document.querySelector('.edit-user').innerHTML = data;
+				});
+			});
+		}
+	});
 
-if (halamanUser) {
-	tampilDataUser();
-	//let buttonEdit = document.querySelectorAll('.user-edit');
-	//for (let i = 0; i < buttonEdit.length; i++) {
-	//	console.log('oke');
-	//}
-}
-//const dataUser = document.querySelector('.datauser');
-//if (dataUser) {
-	function tampilDataUser() {
+	function makeAJAXCall(sendData, methodType, url, callback) {
 		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
-				let arrayData = JSON.parse(xhr.responseText);
-				let data = "";
-				for (let index = 1; index < arrayData.length; index++) {
-					data += "<br>"
-					+index; 
-				}
-				
-				document.querySelector('.datauser').innerHTML = data;
+				//document.querySelector('.datauser').innerHTML = xhr.response;
+				callback(xhr.response);
 			}
 		}
-		const kirim = 'proses=datauser';
-		//const kirim = {
-	//		proses : 'datauser'
-	//	};
-		xhr.open('POST', 'proses.php', true);
-		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//x-www-form-urlencoded
-		xhr.send(kirim);
+		xhr.open(methodType, url);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.send(sendData);
 	}
-//}
+	
+	
 
+	/*
+	buttonUserDelete.addEventListener('click', function() {
+		const UserDelete = document.querySelectorAll('.user-delete').getAttribute('value');
+		console.log(UserDelete);
+	});
+	*/
+	const formTambahUser = document.querySelector('#form-tambah-user');
+	formTambahUser.addEventListener('submit', function(event) {
+		event.preventDefault();
+		
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				if (xhr.responseText == 'error') {
+					let pesan = document.querySelector('.pesan-tambah-user');
+					pesan.innerHTML = 'Gagal, harap mengubah username dan password!';
+					pesan.style.color = 'yellow';
+				}
+				else if (xhr.responseText === 'sukses') {
+					let pesan = document.querySelector('.pesan-tambah-user');
+					pesan.innerHTML = 'Data berhasil ditambahkan';
+					pesan.style.color = 'green';
+					tampilDataUser();
+				}
+				else
+				{
+					let pesan = document.querySelector('.pesan-tambah-user');
+					pesan.innerHTML = xhr.response;
+					pesan.style.color = 'red';
+				}
+			}
+		}
+		let formdata = document.querySelector('#form-tambah-user');
+		let form = new FormData(formdata);
+		form.append('proses', 'tambahuser');
+		xhr.open('POST', 'proses.php', true);
+		xhr.send(form);
+
+	});
+}
 
 const buttonTambahUser = document.querySelector('.tambah-user');
 const formLogin = document.querySelector('#form-login');
@@ -50,7 +111,7 @@ const satuan = document.querySelector('#satuan');
 const formproduk = document.querySelector('#form-produk');
 const kapital = document.querySelector('#kapital');
 const formkategoriproduk = document.querySelector('#form-kategori-produk');
-const formtambahuser = document.querySelector('#form-tambah-user');
+
 const useredit = document.querySelector('#user-edit');
 
 if (useredit) {
@@ -70,37 +131,6 @@ if (useredit) {
 		xhr.open('POST', 'proses.php', true);
 		xhr.send(send);
 		*/
-	});
-}
-
-if (formtambahuser)
-{
-	formtambahuser.addEventListener('submit', function(event) {
-		event.preventDefault();
-		
-		let xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				if (xhr.responseText == 'sukses')
-				{
-					let pesan = document.querySelector('.pesan-tambah-user');
-					pesan.innerHTML = 'Data berhasil ditambahkan';
-					pesan.style.color = 'green';
-				}
-				else
-				{
-					let pesan = document.querySelector('.pesan-tambah-user');
-					pesan.innerHTML = "Tambah data error!";
-					pesan.style.color = 'red';
-				}
-			}
-		}
-		let formdata = document.querySelector('#form-tambah-user');
-		let form = new FormData(formdata);
-		form.append('proses', 'tambahuser');
-		xhr.open('POST', 'proses.php', true);
-		xhr.send(form);
-
 	});
 }
 

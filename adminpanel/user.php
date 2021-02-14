@@ -13,8 +13,8 @@
 	</div>
 
 	<div class="halaman-user">
-		<!--<button class="button button1 tambah-user">Tambah User</button>-->
 		<div class="data-user">
+			<div class="result">hasil</div>
 			<table>
 				<tr>
 					<th>No</th>
@@ -27,6 +27,7 @@
 				</tbody>
 			</table>
 		</div>
+
 		<div class="tambah-user">
 			<form id="form-tambah-user">
 				<div class="pesan pesan-tambah-user"></div>
@@ -50,33 +51,11 @@
 					</select>
 				</label>
 				<input type="submit" value="Tambah User">
-
 			</form>
 		</div>
+
 		<div class="edit-user">
-			<form id="form-edit-user">
-				<div class="pesan pesan-tambah-user"></div>
-				<label>Username
-					<input type="text" name="username" required>
-				</label>
-				<label>Password
-					<input type="text" name="password" required>
-				</label>
-				<label>Usergrup
-					<select name="idusergrup" required>
-						<option value="">Pilih Usergrup</option>
-						<?php
 
-						$query = mysqli_query($mysqli, "SELECT idusergrup, usergrup FROM usergrup");
-						while ($rows = mysqli_fetch_assoc($query)) {
-							echo '<option value="' . $rows['idusergrup'] . '">' . $rows['usergrup'] . '</option>';
-						}
-
-						?>
-					</select>
-				</label>
-				<input type="submit" value="Tambah User">
-			</form>
 		</div>
 		<div class="tambah-usergrup">
 			tambah usergrup
@@ -88,6 +67,7 @@
 			akses
 		</div>
 	</div>
+
 </div>
 
 <script type="text/javascript">
