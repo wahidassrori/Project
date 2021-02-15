@@ -59,7 +59,7 @@ if (isset($_POST['proses']) && $_POST['proses'] == 'datauser') {
 		echo '<td>' . $nomor . '</td>';
 		echo '<td>' . $rows['username'] . '</td>';
 		echo '<td>' . $rows['password'] . '</td>';
-		echo '<td><select name="usergrup">';
+		echo '<td><select name="usergrup" id="' . $rows['iduser'] . '">';
 		$queryusergrup = mysqli_query($mysqli, "SELECT idusergrup, usergrup FROM usergrup");
 		while ($kolom = mysqli_fetch_assoc($queryusergrup)) {
 			if ($rows['idusergrup'] == $kolom['idusergrup']) {
@@ -101,7 +101,7 @@ if (isset($_POST['proses']) && $_POST['proses'] == 'data_user') {
 	}
 }
 
-if (isset($_POST['proses']) && $_POST['proses'] == 'edit_user') {
+if (isset($_POST['proses']) && $_POST['proses'] === 'edit_user') {
 	$iduser = $_POST['iduser'];
 	$query_data_user = mysqli_query($mysqli, "SELECT * FROM user WHERE iduser=$iduser");
 	$rows = mysqli_fetch_assoc($query_data_user);
@@ -113,16 +113,11 @@ if (isset($_POST['proses']) && $_POST['proses'] == 'edit_user') {
 	echo json_encode($rows);
 }
 
-if (isset($_POST['proses']) && $_POST['proses'] == 'dataedituser') {
-	$iduser = $_POST['id'];
-	$query = mysqli_query($mysqli, "SELECT username, password, idusergrup FROM user WHERE idusergrup=$iduser");
-	if (mysqli_num_rows($query) > 0) {
-		while ($rows = mysqli_fetch_assoc($query)) {
-			$username[] = $rows['username'];
-			$password[] = $rows['password'];
-			$idusergrup[] = $rows['idusergrup'];
-		}
-		echo json_encode($username);
+if (isset($_POST['proses']) && $_POST['proses'] == 'delete_user') {
+	$iduser = $_POST['id_user'];
+	$query = mysqli_query($mysqli, "DELETE FROM user WHERE iduser=$iduser");
+	if ($query) {
+		echo 'sukses';
 	} else {
 		echo mysqli_error($mysqli);
 	}

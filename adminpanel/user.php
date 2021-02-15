@@ -14,7 +14,7 @@
 
 	<div class="halaman-user">
 		<div class="data-user">
-			<div class="result">hasil</div>
+			<p class="pesan"></p>
 			<table>
 				<tr>
 					<th>No</th>
@@ -82,6 +82,8 @@
 		document.querySelector('.tambah-user').style.display = 'none';
 		document.querySelector('.tambah-usergrup').style.display = 'none';
 		document.querySelector('.akses').style.display = 'none';
+		document.querySelector('.edit-user').style.display = 'none';
+		//document.querySelector('#form-edit-user').style.display = 'none';
 	})
 
 	tambahuser.addEventListener('click', function(e) {
